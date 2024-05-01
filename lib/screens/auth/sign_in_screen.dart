@@ -25,7 +25,7 @@ class SignInScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const WelcomeText(
-                title: "Welcome to",
+                title: "Welcome to หิวไก่",
                 text:
                     "Enter your Phone number or Email \naddress for sign in. Enjoy your food :)",
               ),
