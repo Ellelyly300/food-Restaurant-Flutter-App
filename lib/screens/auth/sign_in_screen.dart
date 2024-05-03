@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodly_ui/screens/home/home_screen.dart';
 
 import '../../components/buttons/socal_button.dart';
 import '../../components/welcome_text.dart';
@@ -36,6 +37,20 @@ Future<UserCredential> signInWithGoogle() async {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  _SignInScreenState() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        // print('User is currently signed out!');
+      } else {
+        print('User is signed in!');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,37 +66,7 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               const WelcomeText(
                 title: "Welcome to หิวไก่",
-                text:
-                    "Enter your Phone number or Email \naddress for sign in. Enjoy your food :)",
-              ),
-              const SignInForm(),
-              const SizedBox(height: defaultPadding),
-              kOrText,
-              const SizedBox(height: defaultPadding * 1.5),
-
-              Center(
-                child: Text.rich(
-                  TextSpan(
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontWeight: FontWeight.w600),
-                    text: "Don’t have account? ",
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "Create new account.",
-                        style: const TextStyle(color: primaryColor),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen(),
-                                ),
-                              ),
-                      )
-                    ],
-                  ),
-                ),
+                text: "click for login by your google",
               ),
               const SizedBox(height: defaultPadding),
 
