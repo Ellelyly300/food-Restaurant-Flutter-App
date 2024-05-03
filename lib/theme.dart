@@ -6,11 +6,11 @@ ThemeData buildThemeData() {
   return ThemeData(
     primaryColor: accentColor,
 
-    scaffoldBackgroundColor: Colors.white,
+    scaffoldBackgroundColor: Color.fromARGB(255, 255, 255, 255),
     fontFamily: "SF Pro Text",
     // textTheme: textTheme().apply(displayColor: titleColor),
     appBarTheme: const AppBarTheme(
-      color: Colors.white,
+      color: Color.fromARGB(255, 255, 161, 161),
       elevation: 0,
       centerTitle: true,
       iconTheme: IconThemeData(color: Colors.black),

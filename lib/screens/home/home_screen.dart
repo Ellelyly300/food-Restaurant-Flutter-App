@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:foodly_ui/entry_point.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
 import '../../components/cards/big/restaurant_info_big_card.dart';
@@ -18,7 +17,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const EntryPoint(),
       appBar: AppBar(
         leading: const SizedBox(),
         title: Column(
@@ -31,7 +29,7 @@ class HomeScreen extends StatelessWidget {
                   .copyWith(color: primaryColor),
             ),
             const Text(
-              "San Francisco",
+              "Asoke, Bangkok",
               style: TextStyle(color: Colors.black),
             )
           ],
@@ -117,6 +115,9 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                
+                
+
               )
             ],
           ),

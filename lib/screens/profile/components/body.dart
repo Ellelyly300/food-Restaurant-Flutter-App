@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodly_ui/constants.dart';
@@ -30,6 +29,12 @@ class Body extends StatelessWidget {
                 press: () {},
               ),
               ProfileMenuCard(
+                svgSrc: "assets/icons/lock.svg",
+                title: "Change Password",
+                subTitle: "Change your password",
+                press: () {},
+              ),
+              ProfileMenuCard(
                 svgSrc: "assets/icons/card.svg",
                 title: "Payment Methods",
                 subTitle: "Add your credit & debit cards",
@@ -42,13 +47,17 @@ class Body extends StatelessWidget {
                 press: () {},
               ),
               ProfileMenuCard(
+                svgSrc: "assets/icons/fb.svg",
+                title: "Add Social Account",
+                subTitle: "Add Facebook, Twitter etc ",
+                press: () {},
+              ),
+              ProfileMenuCard(
                 svgSrc: "assets/icons/share.svg",
-                title: "Logout",
-                subTitle: "click here when you want logout",
-                press: () async {
-                  await FirebaseAuth.instance.signOut();
-                },
-              )
+                title: "Refer to Friends",
+                subTitle: "Get \$10 for reffering friends",
+                press: () {},
+              ),
             ],
           ),
         ),
