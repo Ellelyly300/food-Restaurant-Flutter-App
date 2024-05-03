@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodly_ui/constants.dart';
@@ -44,7 +45,9 @@ class Body extends StatelessWidget {
                 svgSrc: "assets/icons/share.svg",
                 title: "Logout",
                 subTitle: "click here when you want logout",
-                press: () {},
+                press: () async {
+                  await FirebaseAuth.instance.signOut();
+                },
               )
             ],
           ),
