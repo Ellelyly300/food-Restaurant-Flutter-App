@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:foodly_ui/entry_point.dart';
 import 'package:foodly_ui/screens/home/home_screen.dart';
 import '../../components/buttons/socal_button.dart';
 import '../../components/welcome_text.dart';
@@ -42,7 +43,7 @@ class _SignInScreenState extends State<SignInScreen> {
         print('User is signed in!');
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) => const EntryPoint()),
         );
       }
     });
