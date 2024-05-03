@@ -3,12 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodly_ui/screens/home/home_screen.dart';
-
 import '../../components/buttons/socal_button.dart';
 import '../../components/welcome_text.dart';
 import '../../constants.dart';
-import 'sign_up_screen.dart';
-import 'components/sign_in_form.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -67,21 +64,6 @@ class _SignInScreenState extends State<SignInScreen> {
               const WelcomeText(
                 title: "Welcome to หิวไก่",
                 text: "click for login by your google",
-              ),
-              const SizedBox(height: defaultPadding),
-
-              // Facebook
-              SocalButton(
-                press: () {},
-                text: "Connect with Facebook",
-                color: const Color(0xFF395998),
-                icon: SvgPicture.asset(
-                  'assets/icons/facebook.svg',
-                  colorFilter: const ColorFilter.mode(
-                    Color(0xFF395998),
-                    BlendMode.srcIn,
-                  ),
-                ),
               ),
               const SizedBox(height: defaultPadding),
 
