@@ -159,28 +159,30 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
 
               // Demo list of Big Cards
-              ...List.generate(
-                // For demo we use 4 items
-                3,
-                (index) => Padding(
-                  padding: const EdgeInsets.fromLTRB(
+              Column(
+                children: demoRestaurantNames.map((name) {
+                  int index = demoRestaurantNames.indexOf(name);
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(
                       defaultPadding, 0, defaultPadding, defaultPadding),
-                  child: RestaurantInfoBigCard(
-                    // Images are List<String>
-                    images: demoBigImages..shuffle(),
-                    name: "McDonald's",
-                    rating: 4.3,
-                    numOfRating: 200,
-                    deliveryTime: 25,
-                    foodType: const ["Chinese", "American", "Deshi food"],
-                    press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DetailsScreen(),
+                    child: RestaurantInfoBigCard(
+                      // Use demoBigImages list
+                      images: demoBigImages..shuffle(),
+                      // Use demoRestaurantNames list for name
+                      name: name,
+                      rating: 4.3,
+                      numOfRating: 200,
+                      deliveryTime: 25,
+                      foodType: const ["Chinese", "American", "Deshi food"],
+                      press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsScreen(),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }).toList(),
               )
             ],
           ),

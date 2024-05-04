@@ -4,7 +4,7 @@ import '../../../constants.dart';
 import '../../addToOrder/add_to_order_screen.dart';
 
 class Items extends StatefulWidget {
-  const Items({super.key});
+  const Items({Key? key}) : super(key: key);
 
   @override
   _ItemsState createState() => _ItemsState();
@@ -28,7 +28,7 @@ class _ItemsState extends State<Items> {
             tabs: demoTabs,
           ),
         ),
-        // SizedBox(height: defaultPadding),
+        SizedBox(height: defaultPadding),
         ...List.generate(
           demoData.length,
           (index) => Padding(
@@ -74,7 +74,7 @@ final List<Tab> demoTabs = <Tab>[
 ];
 
 final List<Map<String, dynamic>> demoData = List.generate(
-  3,
+  4,
   (index) => {
     "image": "assets/images/featured _items_${index + 1}.png",
     "title": "Cookie Sandwich",
