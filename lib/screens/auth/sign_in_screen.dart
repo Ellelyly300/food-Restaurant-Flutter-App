@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,22 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   @override
+=======
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../components/buttons/socal_button.dart';
+import '../../components/welcome_text.dart';
+import '../../constants.dart';
+import 'sign_up_screen.dart';
+import 'components/sign_in_form.dart';
+
+class SignInScreen extends StatelessWidget {
+  const SignInScreen({super.key});
+
+  @override
+>>>>>>> mergeddf
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

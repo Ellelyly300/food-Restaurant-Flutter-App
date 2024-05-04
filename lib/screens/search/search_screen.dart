@@ -66,15 +66,11 @@ class _SearchScreenState extends State<SearchScreen> {
                         : RestaurantInfoBigCard(
                             // Images are List<String>
                             images: demoBigImages..shuffle(),
-                            name: "McDonald's",
+                            name: "ไก่ทอด หาดหย่าย",
                             rating: 4.3,
                             numOfRating: 200,
                             deliveryTime: 25,
-                            foodType: const [
-                              "Chinese",
-                              "American",
-                              "Deshi food"
-                            ],
+                            foodType: const ["น่อง", "สะโพก", "ปีก"],
                             press: () {},
                           ),
                   ),

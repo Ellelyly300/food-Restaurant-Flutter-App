@@ -18,7 +18,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const EntryPoint(),
       appBar: AppBar(
         leading: const SizedBox(),
         title: Column(
@@ -31,7 +30,7 @@ class HomeScreen extends StatelessWidget {
                   .copyWith(color: primaryColor),
             ),
             const Text(
-              "San Francisco",
+              "Asoke, Bangkok",
               style: TextStyle(color: Colors.black),
             )
           ],

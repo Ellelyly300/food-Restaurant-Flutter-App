@@ -1,39 +1,39 @@
 // It contains all our demo data that we used
 
 List<String> demoBigImages = [
-  "assets/images/big_1.jpg",
-  "assets/images/big_2.png",
-  "assets/images/big_3.png",
-  "assets/images/big_4.png",
+  "assets/images/ไก่ทอดซอสหัวหอม.png",
+  "assets/images/ลาบไก่ทอด.jpg",
+  "assets/images/ปีกไก่ทอด.jpg",
+  "assets/images/ข้าวเหนียวไก่ทอด.png",
 ];
 
 List<Map<String, dynamic>> demoMediumCardData = [
   {
-    "name": "Daylight Coffee",
-    "image": "assets/images/medium_1.png",
-    "location": "Colarodo, San Francisco",
-    "rating": 4.6,
+    "name": "บ้านไก่เกาหลี",
+    "image": "assets/images/ไก่ทอดบ้านๆ.png",
+    "location": "อโศก, กรุงเทพ",
+    "rating": 8.6,
     "delivertTime": 25,
   },
   {
-    "name": "Mario Italiano",
-    "image": "assets/images/medium_2.png",
-    "location": "Colarodo, San Francisco",
-    "rating": 4.3,
+    "name": "ไก่ทอด หาดหย่าย",
+    "image": "assets/images/ข้าวมันไก่ทอด.png",
+    "location": "นานา, กรุงเทพ",
+    "rating": 9.1,
     "delivertTime": 30,
   },
   {
-    "name": "McDonald’s",
-    "image": "assets/images/medium_3.png",
-    "location": "Colarodo, San Francisco",
-    "rating": 4.8,
+    "name": "ที่นี่มีไก่ หลายแบบ",
+    "image": "assets/images/ไก่ทอดซอสน้ำปลา.png",
+    "location": "ชิดลม, กรุงเทพ",
+    "rating": 7.3,
     "delivertTime": 25,
   },
   {
-    "name": "The Halal Guys",
-    "image": "assets/images/medium_4.png",
-    "location": "Colarodo, San Francisco",
-    "rating": 4.6,
+    "name": "ไก่ทอด ปรอทแตก",
+    "image": "assets/images/ไก่ทอดพริกอินโด.png",
+    "location": "ทองหล่อ, กรุงเทพ",
+    "rating": 8.4,
     "delivertTime": 25,
   },
 ];
