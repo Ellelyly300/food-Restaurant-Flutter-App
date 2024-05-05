@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               ProfileMenuCard(
-                svgSrc: "assets/icons/profile.svg",
+                svgSrc: "assets/icons/order.svg",
                 title: "Your order history",
                 subTitle: "Track food delivery status.",
                 press: () {

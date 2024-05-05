@@ -9,7 +9,6 @@ import '../../components/cards/big/restaurant_info_big_card.dart';
 import '../../components/section_title.dart';
 import '../../constants.dart';
 import '../../demoData.dart';
-import '../../screens/filter/filter_screen.dart';
 import '../details/details_screen.dart';
 import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
@@ -100,22 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FilterScreen(),
-                ),
-              );
-            },
-            child: Text(
-              "Filter",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ),
-        ],
+        
       ),
       body: SafeArea(
         child: SingleChildScrollView(
