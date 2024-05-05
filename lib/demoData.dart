@@ -81,12 +81,28 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
     {
       "name": "ข้าวมันไก่",
       "location": "อโศก, กรุงเทพ",
-      "image": "assets/images/ข้าวหมกไก่ทอด.png",
+      "image": "assets/images/ข้าวมันไก่ทอด.jpg",
       "foodType": "ข้าวมันไก่",
       "price": 0,
       "priceRange": "\$ \$",
     },
-    // เมนูอาหารอื่นๆ ของร้าน "บ้านไก่เกาหลี อร่อยกว่าบอนชอน" ไปต่อที่นี่
+        {
+      "name": "ไก่ทอดคาราอาเกะ",
+      "location": "อโศก, กรุงเทพ",
+      "image": "assets/images/ไก่ทอดคาราอาเกะ.jpg",
+      "foodType": "ไก่ทอดคาราอาเกะ",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+    {
+      "name": "ไก่ทอดหาดใหญ่",
+      "location": "อโศก, กรุงเทพ",
+      "image": "assets/images/ไก่ทอดหาดใหญ่.jpg",
+      "foodType": "ไก่ทอดหาดใหญ่",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+  
   ],
   "ไก่ทอด หาดหย่าย สูตรเด็ด เจ้าดัง": [
     {
@@ -102,10 +118,18 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
       "location": "นานา, กรุงเทพ",
       "image": "assets/images/ข้าวหมกไก่ทอด.png",
       "foodType": "ข้าวมันไก่",
+      "price": 20,
+      "priceRange": "\$ \$",
+    },
+    {
+      "name": "ข้าวหมกไก่",
+      "location": "ชิดลม, กรุงเทพ",
+      "image": "assets/images/ข้าวหมกไก่ทอด.png",
+      "foodType": "ข้าวหมกไก่",
       "price": 0,
       "priceRange": "\$ \$",
     },
-    // เมนูอาหารอื่นๆ ของร้าน "ไก่ทอด หาดหย่าย สูตรเด็ด เจ้าดัง" ไปต่อที่นี่
+    
   ],
-  // เพิ่มร้านอื่นๆ และเมนูอาหารของแต่ละร้านตามต้องการได้ที่นี่
+ 
 };
