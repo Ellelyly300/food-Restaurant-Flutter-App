@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
@@ -83,7 +84,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const SizedBox(),
+        leading: Container(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(9999.0),
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: Image.network(
+                FirebaseAuth.instance.currentUser?.photoURL ??
+                    'https://www.ilovejapantours.com/images/easyblog_articles/6/doraemon-gadget-cat-from-the-future-wallpaper-4.jpg',
+              ),
+            ),
+          ),
+        ),
         title: Column(
           children: [
             Text(
@@ -99,7 +112,6 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
         ),
-        
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -148,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   int index = demoRestaurantNames.indexOf(name);
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(
-                      defaultPadding, 0, defaultPadding, defaultPadding),
+                        defaultPadding, 0, defaultPadding, defaultPadding),
                     child: RestaurantInfoBigCard(
                       // Use demoBigImages list
                       images: demoBigImages,
