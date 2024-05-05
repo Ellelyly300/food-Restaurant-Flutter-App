@@ -18,6 +18,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? _userPhotoUrl;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      setState(() {
+        _userPhotoUrl = currentUser.photoURL;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: FittedBox(
               fit: BoxFit.cover,
               child: Image.network(
-                FirebaseAuth.instance.currentUser?.photoURL ??
+                _userPhotoUrl ??
                     'https://www.ilovejapantours.com/images/easyblog_articles/6/doraemon-gadget-cat-from-the-future-wallpaper-4.jpg',
               ),
             ),
@@ -97,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: demoMediumCardData.map((restaurant) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(
-                      defaultPadding, 0, defaultPadding, defaultPadding),
+                        defaultPadding, 0, defaultPadding, defaultPadding),
                     child: RestaurantInfoBigCard(
                       // Use demoBigImages list
                       images: [restaurant["image"]],

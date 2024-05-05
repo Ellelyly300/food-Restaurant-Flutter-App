@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:foodly_ui/components/cards/iteam_card.dart'; // ลบออก
 import 'package:foodly_ui/demoData.dart';
 
 import '../../constants.dart';
+import 'package:foodly_ui/CartModel.dart';
+import 'package:provider/provider.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -46,15 +47,7 @@ class DetailsScreen extends StatelessWidget {
                           horizontal: defaultPadding,
                           vertical: defaultPadding / 2,
                         ),
-                        child: ItemCard(
-                          title: item["name"] ?? "No Title",
-                          description: item["location"] ?? "No Location",
-                          image: item["image"] ?? "No Image",
-                          foodType: item["foodType"] ?? "No Food Type",
-                          price: 0, // ไม่ได้ใช้ราคา
-                          priceRange: "\$ \$", // ไม่ได้ใช้ราคา
-                          press: () {}, // Add empty function to press
-                        ),
+                        child: _buildItemCard(context, item),
                       );
                     },
                   ),
@@ -63,6 +56,48 @@ class DetailsScreen extends StatelessWidget {
             }).toList(),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildItemCard(BuildContext context, Map<String, dynamic> item) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 1,
+            blurRadius: 3,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
+      child: ListTile(
+        leading: Image.asset(
+          item["image"] ?? "No Image",
+          width: 80,
+          height: 80,
+          fit: BoxFit.cover,
+        ),
+        title: Text(
+          item["name"] ?? "No Title",
+          style: TextStyle(fontSize: 18),
+        ),
+        subtitle: Text(
+          item["location"] ?? "No Location",
+          style: TextStyle(fontSize: 14),
+        ),
+        onTap: () {
+          final cartItem = {
+            "name": item["name"] ?? "No Title",
+            "price": item["price"]?.toString() ?? "0.00",
+            "image": item["image"] ?? "No Image",
+          };
+          Provider.of<CartModel>(context, listen: false)
+              .addItemToCart(cartItem);
+        },
       ),
     );
   }
