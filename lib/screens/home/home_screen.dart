@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-=======
-import 'dart:convert';
-
 import 'package:firebase_auth/firebase_auth.dart';
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
 import 'package:flutter/material.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
@@ -11,20 +6,18 @@ import '../../components/cards/big/restaurant_info_big_card.dart';
 import '../../components/section_title.dart';
 import '../../constants.dart';
 import '../../demoData.dart';
-import '../../screens/filter/filter_screen.dart';
 import '../details/details_screen.dart';
 import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
-import 'components/promotion_banner.dart';
 
-<<<<<<< HEAD
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-=======
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
 
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,25 +50,6 @@ class HomeScreen extends StatefulWidget {
             )
           ],
         ),
-<<<<<<< HEAD
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FilterScreen(),
-                ),
-              );
-            },
-            child: Text(
-              "Filter",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ),
-        ],
-=======
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -119,26 +93,6 @@ class HomeScreen extends StatefulWidget {
               const SizedBox(height: 16),
 
               // Demo list of Big Cards
-<<<<<<< HEAD
-              ...List.generate(
-                // For demo we use 4 items
-                3,
-                (index) => Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                      defaultPadding, 0, defaultPadding, defaultPadding),
-                  child: RestaurantInfoBigCard(
-                    // Images are List<String>
-                    images: demoBigImages..shuffle(),
-                    name: "McDonald's",
-                    rating: 4.3,
-                    numOfRating: 200,
-                    deliveryTime: 25,
-                    foodType: const ["Chinese", "American", "Deshi food"],
-                    press: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DetailsScreen(),
-=======
               Column(
                 children: demoMediumCardData.map((restaurant) {
                   return Padding(
@@ -158,15 +112,11 @@ class HomeScreen extends StatefulWidget {
                         MaterialPageRoute(
                           builder: (context) => const DetailsScreen(),
                         ),
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
                       ),
                     ),
-                  ),
-                ),
-                
-                
-
-              )
+                  );
+                }).toList(),
+              ),
             ],
           ),
         ),
@@ -174,7 +124,3 @@ class HomeScreen extends StatefulWidget {
     );
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_ui/components/cards/iteam_card.dart'; // ลบออก
 import 'package:foodly_ui/demoData.dart';
+
 import '../../constants.dart';
 
 class DetailsScreen extends StatelessWidget {
   const DetailsScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
