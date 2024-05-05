@@ -39,7 +39,6 @@ class Body extends StatelessWidget {
                 },
               ),
               ProfileMenuCard(
-<<<<<<< HEAD
                 svgSrc: "assets/icons/lock.svg",
                 title: "Change Password",
                 subTitle: "Change your password",
@@ -69,20 +68,6 @@ class Body extends StatelessWidget {
                 subTitle: "Get \$10 for reffering friends",
                 press: () {},
               ),
-=======
-                svgSrc: "assets/icons/share.svg",
-                title: "Logout",
-                subTitle: "click here when you want logout",
-                press: () async {
-                  await FirebaseAuth.instance.signOut();
-
-                  if (!context.mounted) return;
-                  Route route = MaterialPageRoute(
-                      builder: (context) => const SignInScreen());
-                  Navigator.pushReplacement(context, route);
-                },
-              )
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
             ],
           ),
         ),

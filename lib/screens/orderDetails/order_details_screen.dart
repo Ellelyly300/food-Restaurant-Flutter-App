@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:foodly_ui/constants.dart';
-=======
-import 'package:foodly_ui/components/buttons/primary_button.dart';
-import 'package:foodly_ui/screens/home/home_screen.dart';
-import '../../constants.dart';
->>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
 
 class OrderDetailsScreen extends StatelessWidget {
   const OrderDetailsScreen({Key? key}) : super(key: key);
