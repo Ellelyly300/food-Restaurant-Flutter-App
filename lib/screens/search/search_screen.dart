@@ -64,20 +64,24 @@ class _SearchScreenState extends State<SearchScreen> {
               Expanded(
                 child: ListView.builder(
                   itemCount: _isLoading ? 2 : demoMediumCardData.length,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.only(bottom: defaultPadding),
-                    child: _isLoading
-                        ? const BigCardScalton()
-                        : RestaurantInfoBigCard(
-                            images: [demoMediumCardData[index]["image"]],
-                            name: demoMediumCardData[index]["name"],
-                            rating: (demoMediumCardData[index]["rating"] as double?) ?? 0.0,
-                            numOfRating: 200,
-                            deliveryTime: demoMediumCardData[index]["deliveryTime"],
-                            foodType: ["Fried Chicken"],
-                            press: () {},
-                          ),
-                  ),
+                  itemBuilder: (context, index) {
+                    final double rating = (demoMediumCardData[index]["rating"] as double?) ?? 0.0;
+                    final int deliveryTime = (demoMediumCardData[index]["deliveryTime"] as int?) ?? 0;
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: defaultPadding),
+                      child: _isLoading
+                          ? const BigCardScalton()
+                          : RestaurantInfoBigCard(
+                              images: [demoMediumCardData[index]["image"]],
+                              name: demoMediumCardData[index]["name"],
+                              rating: rating,
+                              numOfRating: 200,
+                              deliveryTime: deliveryTime,
+                              foodType: ["Fried Chicken"],
+                              press: () {},
+                            ),
+                    );
+                  },
                 ),
               ),
             ],
@@ -112,7 +116,7 @@ class _SearchFormState extends State<SearchForm> {
             // If all data are correct then save data to out variables
             _formKey.currentState!.save();
 
-            // Once user pree on submit
+            // Once user press on submit
           } else {}
         },
         validator: requiredValidator,

@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../constants.dart';
 import '../search/search_screen.dart';
-import 'components/featured_items.dart';
 import 'components/iteams.dart';
 import 'components/restaurrant_info.dart';
 
@@ -38,7 +37,6 @@ class DetailsScreen extends StatelessWidget {
               SizedBox(height: defaultPadding / 2),
               // RestaurantInfo(),
               SizedBox(height: defaultPadding),
-              FeaturedItems(),
               Items(),
             ],
           ),
