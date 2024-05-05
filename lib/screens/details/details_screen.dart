@@ -14,19 +14,6 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: SvgPicture.asset("assets/icons/share.svg"),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: SvgPicture.asset("assets/icons/search.svg"),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SearchScreen(),
-              ),
-            ),
-          ),
         ],
       ),
       body: const SafeArea(
@@ -37,7 +24,7 @@ class DetailsScreen extends StatelessWidget {
               SizedBox(height: defaultPadding / 2),
               // RestaurantInfo(),
               SizedBox(height: defaultPadding),
-              Items(),
+              Items(demoData: []),
             ],
           ),
         ),

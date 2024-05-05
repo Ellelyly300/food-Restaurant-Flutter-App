@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:foodly_ui/screens/details/details_screen.dart';
+import 'package:foodly_ui/screens/onboarding/onboarding_scrreen.dart';
 import '../../../components/cards/iteam_card.dart';
 import '../../../constants.dart';
 import '../../addToOrder/add_to_order_screen.dart';
+import '../../../demoData.dart';
 
 class Items extends StatefulWidget {
-  const Items({Key? key}) : super(key: key);
+  final List<Map<String, dynamic>> demoData;
+
+  const Items({Key? key, required this.demoData}) : super(key: key);
 
   @override
   _ItemsState createState() => _ItemsState();
@@ -16,71 +21,31 @@ class _ItemsState extends State<Items> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        DefaultTabController(
-          length: demoTabs.length,
-          child: TabBar(
-            isScrollable: true,
-            unselectedLabelColor: titleColor,
-            labelStyle: Theme.of(context).textTheme.titleLarge,
-            onTap: (value) {
-              // you will get selected tab index
-            },
-            tabs: demoTabs,
-          ),
-        ),
         SizedBox(height: defaultPadding),
-        ...List.generate(
-          demoData.length,
-          (index) => Padding(
+        ...(widget.demoData.map((item) {
+          return Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: defaultPadding, vertical: defaultPadding / 2),
             child: ItemCard(
-              title: demoData[index]["title"],
-              description: demoData[index]["description"],
-              image: demoData[index]["image"],
-              foodType: demoData[index]['foodType'],
-              price: demoData[index]["price"],
-              priceRange: demoData[index]["priceRange"],
-              press: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AddToOrderScrreen(),
-                ),
-              ),
+              title: item["name"] ?? "No Title",
+              description: item["location"] ?? "No Location",
+              image: item["image"] ?? "No Image",
+              foodType: item["foodType"] ?? "No Food Type",
+              price: 0, // ไม่ได้ใช้ราคา
+              priceRange: "\$ \$", // ไม่ได้ใช้ราคา
+              press: () {
+                // ไปยังหน้ารายละเอียดของร้านที่เลือก
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailsScreen(),
+                  ),
+                );
+              },
             ),
-          ),
-        ),
+          );
+        }).toList()),
       ],
     );
   }
 }
-
-final List<Tab> demoTabs = <Tab>[
-  const Tab(
-    child: Text('Most Populars'),
-  ),
-  const Tab(
-    child: Text('Beef & Lamb'),
-  ),
-  const Tab(
-    child: Text('Seafood'),
-  ),
-  const Tab(
-    child: Text('Appetizers'),
-  ),
-  const Tab(
-    child: Text('Dim Sum'),
-  ),
-];
-
-final List<Map<String, dynamic>> demoData = List.generate(
-  4,
-  (index) => {
-    "image": "assets/images/featured _items_${index + 1}.png",
-    "title": "Cookie Sandwich",
-    "description": "Shortbread, chocolate turtle cookies, and red velvet.",
-    "price": 7.4,
-    "foodType": "Chinese",
-    "priceRange": "\$" * 2,
-  },
-);
