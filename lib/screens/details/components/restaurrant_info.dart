@@ -23,7 +23,7 @@ class RestaurantInfo extends StatelessWidget {
             maxLines: 1,
           ),
           const SizedBox(height: defaultPadding / 2),
-          // แสดงรายละเอียดอื่น ๆ ของร้านอาหารตามต้องการ
+          // แสดงรายละเอียดอื่นๆ
         ],
       ),
     );
