@@ -1,3 +1,4 @@
+
 // It contains all our demo data that we used
 final List<String> demoRestaurantNames = [
   "ไก่ทอด หาดหย่าย สูตรเด็ด เจ้าดัง",
@@ -68,6 +69,8 @@ List<Map<String, dynamic>> demoMediumCardData = [
   }
 ];
 
+<<<<<<< HEAD
+=======
 final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
   "บ้านไก่เกาหลี อร่อยกว่าบอนชอน": [
     {
@@ -133,3 +136,4 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
   ],
  
 };
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4

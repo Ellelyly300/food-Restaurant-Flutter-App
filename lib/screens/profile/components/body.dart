@@ -39,6 +39,37 @@ class Body extends StatelessWidget {
                 },
               ),
               ProfileMenuCard(
+<<<<<<< HEAD
+                svgSrc: "assets/icons/lock.svg",
+                title: "Change Password",
+                subTitle: "Change your password",
+                press: () {},
+              ),
+              ProfileMenuCard(
+                svgSrc: "assets/icons/card.svg",
+                title: "Payment Methods",
+                subTitle: "Add your credit & debit cards",
+                press: () {},
+              ),
+              ProfileMenuCard(
+                svgSrc: "assets/icons/marker.svg",
+                title: "Locations",
+                subTitle: "Add or remove your delivery locations",
+                press: () {},
+              ),
+              ProfileMenuCard(
+                svgSrc: "assets/icons/fb.svg",
+                title: "Add Social Account",
+                subTitle: "Add Facebook, Twitter etc ",
+                press: () {},
+              ),
+              ProfileMenuCard(
+                svgSrc: "assets/icons/share.svg",
+                title: "Refer to Friends",
+                subTitle: "Get \$10 for reffering friends",
+                press: () {},
+              ),
+=======
                 svgSrc: "assets/icons/share.svg",
                 title: "Logout",
                 subTitle: "click here when you want logout",
@@ -51,6 +82,7 @@ class Body extends StatelessWidget {
                   Navigator.pushReplacement(context, route);
                 },
               )
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
             ],
           ),
         ),
