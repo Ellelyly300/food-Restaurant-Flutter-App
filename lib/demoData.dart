@@ -19,7 +19,6 @@ final Map<String, String> restaurantImages = {
   // Add more restaurant names and images here as needed
 };
 
-
 List<String> demoBigImages = [
   "assets/images/ไก่ทอดซอสหัวหอม.png",
   "assets/images/ลาบไก่ทอด.jpg",
@@ -61,7 +60,7 @@ List<Map<String, dynamic>> demoMediumCardData = [
     "rating": 8.4,
     "delivertTime": 30,
   },
-    {
+  {
     "name": "ไก่ทอดข้างทาง อุุดหนุนป้าหน่อย",
     "image": "assets/images/ปีกไก่ทอด.png",
     "location": "มศว, กรุงเทพ",
@@ -70,3 +69,47 @@ List<Map<String, dynamic>> demoMediumCardData = [
   }
 ];
 
+<<<<<<< HEAD
+=======
+final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
+  "บ้านไก่เกาหลี อร่อยกว่าบอนชอน": [
+    {
+      "name": "ไก่ทอดคลุกซอสเกาหลี",
+      "location": "อโศก, กรุงเทพ",
+      "image": "assets/images/ไก่ทอดคลุกซอสเกาหลี.png",
+      "foodType": "ไก่ทอด",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+    {
+      "name": "ข้าวมันไก่",
+      "location": "อโศก, กรุงเทพ",
+      "image": "assets/images/ข้าวหมกไก่ทอด.png",
+      "foodType": "ข้าวมันไก่",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+    // เมนูอาหารอื่นๆ ของร้าน "บ้านไก่เกาหลี อร่อยกว่าบอนชอน" ไปต่อที่นี่
+  ],
+  "ไก่ทอด หาดหย่าย สูตรเด็ด เจ้าดัง": [
+    {
+      "name": "ไก่ทอดหาดใหญ่",
+      "location": "นานา, กรุงเทพ",
+      "image": "assets/images/ไก่ทอดหาดใหญ่.png",
+      "foodType": "ไก่ทอด",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+    {
+      "name": "ข้าวมันไก่",
+      "location": "นานา, กรุงเทพ",
+      "image": "assets/images/ข้าวหมกไก่ทอด.png",
+      "foodType": "ข้าวมันไก่",
+      "price": 0,
+      "priceRange": "\$ \$",
+    },
+    // เมนูอาหารอื่นๆ ของร้าน "ไก่ทอด หาดหย่าย สูตรเด็ด เจ้าดัง" ไปต่อที่นี่
+  ],
+  // เพิ่มร้านอื่นๆ และเมนูอาหารของแต่ละร้านตามต้องการได้ที่นี่
+};
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4

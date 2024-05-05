@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import 'dart:convert';
+
+import 'package:firebase_auth/firebase_auth.dart';
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
 import 'package:flutter/material.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
@@ -11,14 +17,31 @@ import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
 import 'components/promotion_banner.dart';
 
+<<<<<<< HEAD
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+=======
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const SizedBox(),
+        leading: Container(
+          padding: const EdgeInsets.all(8.0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(9999.0),
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: Image.network(
+                FirebaseAuth.instance.currentUser?.photoURL ??
+                    'https://www.ilovejapantours.com/images/easyblog_articles/6/doraemon-gadget-cat-from-the-future-wallpaper-4.jpg',
+              ),
+            ),
+          ),
+        ),
         title: Column(
           children: [
             Text(
@@ -34,6 +57,7 @@ class HomeScreen extends StatelessWidget {
             )
           ],
         ),
+<<<<<<< HEAD
         actions: [
           TextButton(
             onPressed: () {
@@ -50,6 +74,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ],
+=======
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -75,7 +101,7 @@ class HomeScreen extends StatelessWidget {
               const MediumCardList(),
               const SizedBox(height: 20),
               // Banner
-              const PromotionBanner(),
+              // const PromotionBanner(), หน้าโปรโมชั่น
               const SizedBox(height: 20),
               SectionTitle(
                 title: "Best Pick",
@@ -93,6 +119,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 16),
 
               // Demo list of Big Cards
+<<<<<<< HEAD
               ...List.generate(
                 // For demo we use 4 items
                 3,
@@ -111,6 +138,27 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const DetailsScreen(),
+=======
+              Column(
+                children: demoMediumCardData.map((restaurant) {
+                  return Padding(
+                    padding: const EdgeInsets.fromLTRB(
+                      defaultPadding, 0, defaultPadding, defaultPadding),
+                    child: RestaurantInfoBigCard(
+                      // Use demoBigImages list
+                      images: [restaurant["image"]],
+                      // Use demoRestaurantNames list for name
+                      name: restaurant["name"],
+                      rating: restaurant["rating"],
+                      numOfRating: 200,
+                      deliveryTime: restaurant["delivertTime"],
+                      foodType: const ["Fried Chicken"],
+                      press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DetailsScreen(),
+                        ),
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
                       ),
                     ),
                   ),
@@ -126,3 +174,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 45deca006def9cbc833eb902a711655a43c8f9c4
