@@ -1,10 +1,12 @@
 // It contains all our demo data that we used
 final List<String> demoRestaurantNames = [
   "Kaitod Hadyai",
-  "Mama's Kitchen",
+  "Skibidi Kitchen",
   "Spice Village",
   "Pizza Planet",
-  // Add more restaurant names here as needed
+  "Pizza Skibidi",
+  "บ้านไก่เกาหลี",
+  "ไก่ทอด หาดหย่าย"
 ];
 
 List<String> demoBigImages = [
@@ -16,7 +18,8 @@ List<String> demoBigImages = [
   "assets/images/ไก่ทอดสับ.jpg",
   "assets/images/ข้าวเหนียวไก่ทอด.png",
   "assets/images/ไก่ทอดคาราอาเกะ.jpg",
-  "assets/images/ไก่ทอดบ้านๆ.jpg"
+  "assets/images/ไก่ทอดบ้านๆ.jpg",
+  "assets/images/ไก่ทอดพริกอินโด.jpg"
 ];
 
 List<Map<String, dynamic>> demoMediumCardData = [
@@ -47,5 +50,12 @@ List<Map<String, dynamic>> demoMediumCardData = [
     "location": "ทองหล่อ, กรุงเทพ",
     "rating": 8.4,
     "delivertTime": 25,
+  },
+    {
+    "name": "ไก่ทอด Skibidi",
+    "image": "assets/images/ไก่ทอดพริกอินโด.png",
+    "location": "ทองหล่อ, กรุงเทพ",
+    "rating": 10.0,
+    "delivertTime": 50,
   },
 ];

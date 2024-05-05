@@ -16,7 +16,7 @@ import 'components/promotion_banner.dart';
 import 'package:location/location.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const MediumCardList(),
               const SizedBox(height: 20),
               // Banner
-              const PromotionBanner(),
+              // const PromotionBanner(), หน้าโปรโมชั่น
               const SizedBox(height: 20),
               SectionTitle(
                 title: "Best Pick",
@@ -160,20 +160,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Demo list of Big Cards
               Column(
-                children: demoRestaurantNames.map((name) {
-                  int index = demoRestaurantNames.indexOf(name);
+                children: demoMediumCardData.map((restaurant) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(
                       defaultPadding, 0, defaultPadding, defaultPadding),
                     child: RestaurantInfoBigCard(
                       // Use demoBigImages list
-                      images: demoBigImages..shuffle(),
+                      images: [restaurant["image"]],
                       // Use demoRestaurantNames list for name
-                      name: name,
-                      rating: 4.3,
+                      name: restaurant["name"],
+                      rating: restaurant["rating"],
                       numOfRating: 200,
-                      deliveryTime: 25,
-                      foodType: const ["Chinese", "American", "Deshi food"],
+                      deliveryTime: restaurant["delivertTime"],
+                      foodType: const ["Fried Chicken"],
                       press: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -191,3 +190,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+

@@ -36,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: defaultPadding / 2),
-              RestaurantInfo(),
+              // RestaurantInfo(),
               SizedBox(height: defaultPadding),
               FeaturedItems(),
               Items(),

@@ -7,7 +7,7 @@ import '../../constants.dart';
 import '../../demoData.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -49,28 +49,32 @@ class _SearchScreenState extends State<SearchScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: defaultPadding),
-              Text('Search', style: Theme.of(context).textTheme.headlineMedium),
+              Text(
+                'Search',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
               const SizedBox(height: defaultPadding),
               const SearchForm(),
               const SizedBox(height: defaultPadding),
-              Text(_showSearchResult ? "Search Results" : "Top Restaurants",
-                  style: Theme.of(context).textTheme.titleLarge),
+              Text(
+                _showSearchResult ? "Search Results" : "Top Restaurants",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
               const SizedBox(height: defaultPadding),
               Expanded(
                 child: ListView.builder(
-                  itemCount: _isLoading ? 2 : 5, //5 is demo length of your data
+                  itemCount: _isLoading ? 2 : demoMediumCardData.length,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.only(bottom: defaultPadding),
                     child: _isLoading
                         ? const BigCardScalton()
                         : RestaurantInfoBigCard(
-                            // Images are List<String>
-                            images: demoBigImages..shuffle(),
-                            name: "ไก่ทอด หาดหย่าย",
-                            rating: 4.3,
+                            images: [demoMediumCardData[index]["image"]],
+                            name: demoMediumCardData[index]["name"],
+                            rating: (demoMediumCardData[index]["rating"] as double?) ?? 0.0,
                             numOfRating: 200,
-                            deliveryTime: 25,
-                            foodType: const ["น่อง", "สะโพก", "ปีก"],
+                            deliveryTime: demoMediumCardData[index]["deliveryTime"],
+                            foodType: ["Fried Chicken"],
                             press: () {},
                           ),
                   ),
@@ -85,7 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 class SearchForm extends StatefulWidget {
-  const SearchForm({super.key});
+  const SearchForm({Key? key}) : super(key: key);
 
   @override
   State<SearchForm> createState() => _SearchFormState();
@@ -93,6 +97,7 @@ class SearchForm extends StatefulWidget {
 
 class _SearchFormState extends State<SearchForm> {
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Form(
