@@ -93,8 +93,8 @@ class DetailsScreen extends StatelessWidget {
             "price": item["price"]?.toString() ?? "0.00",
             "image": item["image"] ?? "No Image",
           };
-          Provider.of<CartModel>(context, listen: false)
-              .addItemToCart(cartItem);
+          // Provider.of<CartModel>(context, listen: false)
+          //     .addItemToCart(cartItem);
         },
       ),
     );
