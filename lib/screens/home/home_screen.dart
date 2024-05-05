@@ -1,83 +1,18 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:location/location.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
 import '../../components/cards/big/restaurant_info_big_card.dart';
 import '../../components/section_title.dart';
 import '../../constants.dart';
 import '../../demoData.dart';
+import '../../screens/filter/filter_screen.dart';
 import '../details/details_screen.dart';
 import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
 import 'components/promotion_banner.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  String locationStr = "loading...";
-
-  _HomeScreenState() {
-    requestLocation();
-  }
-
-  void requestLocation() async {
-    Location location = new Location();
-
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-    LocationData _locationData;
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    _locationData = await location.getLocation();
-    location.onLocationChanged.listen((LocationData currentLocation) async {
-      double? lat = currentLocation.latitude;
-      double? lon = currentLocation.longitude;
-      if (lat == null || lon == null) {
-        return;
-      }
-
-      String newLocation = await reverseSearchLocation(lat, lon);
-      setState(() {
-        locationStr = newLocation;
-      });
-    });
-  }
-
-  Future<String> reverseSearchLocation(double lat, double lon) async {
-    http.Response res = await http.get(
-        Uri.parse(
-            "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lon&format=jsonv2&accept-language=th"),
-        headers: {'Accept-Language': 'th'});
-    dynamic json = jsonDecode(res.body);
-    print(json);
-    String output =
-        "${json['address']['road']}, ${json['address']['neighbourhood']}, ${json['address']['city']}";
-
-    return output;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,13 +28,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   .bodySmall!
                   .copyWith(color: primaryColor),
             ),
-            Text(
-              locationStr,
-              style: const TextStyle(color: Colors.black),
+            const Text(
+              "Asoke, Bangkok",
+              style: TextStyle(color: Colors.black),
             )
           ],
         ),
-        
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FilterScreen(),
+                ),
+              );
+            },
+            child: Text(
+              "Filter",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -143,30 +93,31 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
 
               // Demo list of Big Cards
-              Column(
-                children: demoRestaurantNames.map((name) {
-                  int index = demoRestaurantNames.indexOf(name);
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(
+              ...List.generate(
+                // For demo we use 4 items
+                3,
+                (index) => Padding(
+                  padding: const EdgeInsets.fromLTRB(
                       defaultPadding, 0, defaultPadding, defaultPadding),
-                    child: RestaurantInfoBigCard(
-                      // Use demoBigImages list
-                      images: demoBigImages,
-                      // Use demoRestaurantNames list for name
-                      name: name,
-                      rating: 4.3,
-                      numOfRating: 200,
-                      deliveryTime: 25,
-                      foodType: const ["Chinese", "American", "Deshi food"],
-                      press: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const DetailsScreen(),
-                        ),
+                  child: RestaurantInfoBigCard(
+                    // Images are List<String>
+                    images: demoBigImages..shuffle(),
+                    name: "McDonald's",
+                    rating: 4.3,
+                    numOfRating: 200,
+                    deliveryTime: 25,
+                    foodType: const ["Chinese", "American", "Deshi food"],
+                    press: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const DetailsScreen(),
                       ),
                     ),
-                  );
-                }).toList(),
+                  ),
+                ),
+                
+                
+
               )
             ],
           ),
