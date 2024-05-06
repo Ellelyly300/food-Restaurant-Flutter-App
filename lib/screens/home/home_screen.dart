@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
 import '../../components/cards/big/restaurant_info_big_card.dart';
 import '../../components/section_title.dart';
 import '../../constants.dart';
 import '../../demoData.dart';
-import '../../screens/filter/filter_screen.dart';
 import '../details/details_screen.dart';
 import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
-import 'components/promotion_banner.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
