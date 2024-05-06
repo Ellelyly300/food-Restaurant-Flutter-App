@@ -3,7 +3,14 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'my_receipt.dart'; // Import my_receipt.dart
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  final List<Map<String, dynamic>> orderedItems; // รับรายการสินค้าที่เลือกมา
+  final double totalPrice; // รับราคารวมมา
+
+  const PaymentPage({
+    Key? key,
+    required this.orderedItems,
+    required this.totalPrice,
+  }) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -16,7 +23,8 @@ class _PaymentPageState extends State<PaymentPage> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
-  List<Map<String, dynamic>> selectedItems = []; // สร้างตัวแปรเก็บรายการสินค้าที่เลือก
+  List<Map<String, dynamic>> selectedItems =
+      []; // สร้างตัวแปรเก็บรายการสินค้าที่เลือก
 
   void userTappedPay() {
     if (formKey.currentState!.validate()) {
@@ -48,8 +56,8 @@ class _PaymentPageState extends State<PaymentPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) => MyReceipt(
-                      orderedItems: selectedItems, // ส่งรายการสินค้าที่เลือกไปยัง MyReceipt
-                      totalPrice: calculateTotalPrice(), // ส่งราคารวมไปยัง MyReceipt
+                      orderedItems: widget.orderedItems,
+                      totalPrice: widget.totalPrice,
                     ),
                   ),
                 );
@@ -109,8 +117,10 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           const Spacer(),
 
-          ElevatedButton( // Replaced MyButton with ElevatedButton
-            onPressed: userTappedPay, // Call userTappedPay function when button is pressed
+          ElevatedButton(
+            // Replaced MyButton with ElevatedButton
+            onPressed:
+                userTappedPay, // Call userTappedPay function when button is pressed
             child: Text('Pay now'), // Button text
           ),
         ],

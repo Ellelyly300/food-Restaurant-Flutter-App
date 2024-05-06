@@ -206,7 +206,7 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
       "price": 0,
       "priceRange": "\฿ \฿",
     },
-    {
+        {
       "name": "ไก่ทอดบ้านๆ",
       "location": "ชิดลม, กรุงเทพ",
       "image": "assets/images/ไก่ทอดบ้านๆ.jpg",

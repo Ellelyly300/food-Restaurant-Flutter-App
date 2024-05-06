@@ -19,6 +19,8 @@ class _ItemsState extends State<Items> {
     setState(() {
       totalPrice += item["price"];
       selectedItems.add(item);
+      // totalPrice = item['price'];
+      // selectedItems = [item];
     });
     // Navigate to OrderDetailsScreen
     Navigator.push(

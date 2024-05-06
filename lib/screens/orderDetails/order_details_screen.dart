@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodly_ui/constants.dart';
+import 'package:foodly_ui/my_receipt.dart';
 import 'package:foodly_ui/payment_page.dart';
 
 class OrderDetailsScreen extends StatefulWidget {
@@ -19,11 +20,21 @@ class OrderDetailsScreen extends StatefulWidget {
 
 class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
   int itemCount = 1; // เพิ่มตัวแปรเก็บจำนวนสินค้า
+  late double totalPrice =
+      widget.totalPrice; // กำหนดค่า totalPrice โดยใช้ค่าเริ่มต้นจาก widget
+  late List<Map<String, dynamic>> selectedItems = widget.selectedItems;
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice =
-        widget.totalPrice; // กำหนดค่า totalPrice โดยใช้ค่าเริ่มต้นจาก widget
+    @override
+    void initState() {
+      selectedItems = widget.selectedItems;
+      selectedItems.map((e) {
+        e['itemCount'] = 1;
+        return e;
+      });
+      super.initState();
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -45,35 +56,67 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: widget.selectedItems.length,
+                itemCount: selectedItems.length,
                 itemBuilder: (context, index) {
-                  final item = widget.selectedItems[index];
+                  final item = selectedItems[index];
                   final price = item["price"] as double;
+                  // int currItemCount = 1;
+                  // if (item["itemCount"] == null) {
+                  //   selectedItems.map((e) {
+                  //     e['itemCount'] = 1;
+                  //     return e;
+                  //   });
+                  // } else {
+                  //   currItemCount = item['itemCount'] as int;
+                  // }
+
                   return ListTile(
                     title: Row(
                       children: [
                         Text(item["title"]),
-                        Spacer(),
+                        const Spacer(),
                         IconButton(
                           icon: Icon(Icons.remove),
                           onPressed: () {
                             // ลดจำนวนสินค้าและ totalPrice
                             setState(() {
+                              if (itemCount == 1) {
+                                selectedItems.removeWhere(
+                                    (i) => i['title'] == item['title']);
+                                totalPrice -= price;
+                              }
+
                               if (itemCount > 1) {
-                                itemCount--;
+                                itemCount -= 1;
                                 totalPrice -= price;
                               }
                             });
+
+                            // selectedItems.map((e) {
+                            //   if (e['title'] == item['title']) {
+                            //     e['itemCount'] = itemCount;
+                            //   }
+                            //   return e;
+                            // });
+                            // setState(() {});
                           },
                         ),
                         Text('$itemCount'),
                         IconButton(
-                          icon: Icon(Icons.add),
+                          icon: const Icon(Icons.add),
                           onPressed: () {
                             // เพิ่มจำนวนสินค้าและ totalPrice
                             setState(() {
-                              itemCount++;
+                              // selectedItems.map((e) {
+                              //   if (e['title'] == item['title']) {
+                              //     e['itemCount'] = itemCount + 1;
+                              //   }
+                              //   return e;
+                              // });
+                              // selectedItems = [...selectedItems];
+
                               totalPrice += price;
+                              itemCount += 1;
                             });
                           },
                         ),
@@ -87,12 +130,16 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const PaymentPage(),
+                      builder: (context) => PaymentPage(
+                        orderedItems: selectedItems,
+                        totalPrice: totalPrice,
+                      ),
                     ),
                   );
                 },
-                child: Text("Go to checkout"),
+                child: Text("Go to Payment"),
               ),
+
               const SizedBox(height: defaultPadding * 2),
               // Remove the "Continue Shopping" button
             ],
