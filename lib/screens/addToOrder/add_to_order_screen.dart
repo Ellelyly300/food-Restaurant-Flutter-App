@@ -1,158 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:foodly_ui/screens/orderDetails/order_details_screen.dart';
+import '../../../components/cards/iteam_card.dart';
+import '../../../constants.dart';
+import '../../addToOrder/order_details_screen.dart';
 
-import '../../constants.dart';
-import '../orderDetails/order_details_screen.dart';
-import 'components/info.dart';
-import 'components/required_section_title.dart';
-import 'components/rounded_checkedbox_list_tile.dart';
-
-// ignore: must_be_immutable
-class AddToOrderScrreen extends StatefulWidget {
-  const AddToOrderScrreen({super.key});
+class Items extends StatefulWidget {
+  const Items({Key? key});
 
   @override
-  State<AddToOrderScrreen> createState() => _AddToOrderScrreenState();
+  _ItemsState createState() => _ItemsState();
 }
 
-class _AddToOrderScrreenState extends State<AddToOrderScrreen> {
-  // for demo we select 2nd one
-  int choiceOfTopCookie = 1;
-
-  int choiceOfBottomCookie = 1;
-
-  int numOfItems = 1;
+class _ItemsState extends State<Items> {
+  double totalPrice = 0; // เพิ่มตัวแปรเก็บราคารวม
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(100))),
-              backgroundColor: Colors.black.withOpacity(0.5),
-              padding: EdgeInsets.zero,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        DefaultTabController(
+          length: demoTabs.length,
+          child: TabBar(
+            isScrollable: true,
+            unselectedLabelColor: titleColor,
+            labelStyle: Theme.of(context).textTheme.titleLarge,
+            onTap: (value) {
+              // you will get selected tab index
+            },
+            tabs: demoTabs,
+          ),
+        ),
+        ...List.generate(
+          demoData.length,
+          (index) => Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding / 2),
+            child: ItemCard(
+              title: demoData[index]["title"],
+              description: demoData[index]["description"],
+              image: demoData[index]["image"],
+              foodType: demoData[index]['foodType'],
+              price: demoData[index]["price"],
+              priceRange: demoData[index]["priceRange"],
+              press: () {
+                // ส่งออเดอร์ไปยังหน้า OrderDetailsScreen และบวกยอดรวม
+                setState(() {
+                  totalPrice += demoData[index]["price"];
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderDetailsScreen(totalPrice: totalPrice, selectedItems: [],),
+                  ),
+                );
+              },
             ),
-            child: const Icon(Icons.close, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
           ),
         ),
-      ),
-      body: SafeArea(
-        top: false,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Info(),
-              const SizedBox(height: defaultPadding),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const RequiredSectionTitle(title: "Choice of top Cookie"),
-                    const SizedBox(height: defaultPadding),
-                    ...List.generate(
-                      choiceOfTopCookies.length,
-                      (index) => RoundedCheckboxListTile(
-                        isActive: index == choiceOfTopCookie,
-                        text: choiceOfTopCookies[index],
-                        press: () {
-                          setState(() {
-                            choiceOfTopCookie = index;
-                          });
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    const RequiredSectionTitle(
-                        title: "Choice of Bottom Cookie"),
-                    const SizedBox(height: defaultPadding),
-                    ...List.generate(
-                      choiceOfTopCookies.length,
-                      (index) => RoundedCheckboxListTile(
-                        isActive: index == choiceOfBottomCookie,
-                        text: choiceOfTopCookies[index],
-                        press: () {
-                          setState(() {
-                            choiceOfBottomCookie = index;
-                          });
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    // // Num of item
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(),
-                              padding: EdgeInsets.zero,
-                            ),
-                            child: const Icon(Icons.remove),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: defaultPadding),
-                          child: Text(numOfItems.toString().padLeft(2, "0"),
-                              style: Theme.of(context).textTheme.titleLarge),
-                        ),
-                        SizedBox(
-                          height: 40,
-                          width: 40,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              shape: const CircleBorder(),
-                              padding: EdgeInsets.zero,
-                            ),
-                            child: const Icon(Icons.add),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: defaultPadding),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const OrderDetailsScreen(),
-                          ),
-                        );
-                      },
-                      child: const Text("Add to Order (\$11.98)"),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: defaultPadding)
-            ],
-          ),
-        ),
-      ),
+      ],
     );
   }
-
-  List<String> choiceOfTopCookies = [
-    "Choice of top Cookie",
-    "Cookies and Cream",
-    "Funfetti",
-    "M and M",
-    "Red Velvet",
-    "Peanut Butter",
-    "Snickerdoodle",
-    "White Chocolate Macadamia",
-  ];
 }
+
+final List<Tab> demoTabs = <Tab>[
+  const Tab(
+    child: Text('All Menu'),
+  )
+];
+
+final List<Map<String, dynamic>> demoData = [
+  {
+    "image": "assets/images/ไก่ทอดคลุกซอสเกาหลี.png",
+    "title": "ไก่ทอดคลุกซอสเกาหลี",
+    "description": "ไก่ทอดที่ทอดจนหอมกรุ่น คลุกเคล้าด้วยซอสเกาหลีสุดเจ้มจ้น",
+    "price": 7.99,
+    "foodType": "Korean Fried Chicken",
+    "priceRange": "\$" * 3,
+  },
+  {
+    "image": "assets/images/featured_items_2.png",
+    "title": "Menu Item 2",
+    "description": "Description of Menu Item 2",
+    "price": 7.99,
+    "foodType": "Chinese",
+    "priceRange": "\$" * 2,
+  },
+  {
+    "image": "assets/images/featured_items_3.png",
+    "title": "Menu Item 3",
+    "description": "Description of Menu Item 3",
+    "price": 6.49,
+    "foodType": "Mexican",
+    "priceRange": "\$",
+  },
+];

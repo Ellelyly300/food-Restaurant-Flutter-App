@@ -33,7 +33,9 @@ class _EntryPointState extends State<EntryPoint> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const SearchScreen(),
-    const OrderDetailsScreen(),
+    OrderDetailsScreen(
+        totalPrice: 0,
+        selectedItems: []), // เพิ่มพารามิเตอร์ selectedItems และกำหนดค่าเป็นรายการว่าง
     const ProfileScreen(),
   ];
 
