@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 import '../../components/cards/big/big_card_image_slide.dart';
 import '../../components/cards/big/restaurant_info_big_card.dart';
@@ -9,30 +13,71 @@ import '../../demoData.dart';
 import '../details/details_screen.dart';
 import '../featured/featurred_screen.dart';
 import 'components/medium_card_list.dart';
+import 'components/promotion_banner.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? _userPhotoUrl;
+  String locationStr = "loading...";
 
-  @override
-  void initState() {
-    super.initState();
-    _loadUserData();
+  _HomeScreenState() {
+    requestLocation();
   }
 
-  Future<void> _loadUserData() async {
-    final currentUser = FirebaseAuth.instance.currentUser;
-    if (currentUser != null) {
-      setState(() {
-        _userPhotoUrl = currentUser.photoURL;
-      });
+  void requestLocation() async {
+    Location location = new Location();
+
+    bool _serviceEnabled;
+    PermissionStatus _permissionGranted;
+    LocationData _locationData;
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
     }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+    location.onLocationChanged.listen((LocationData currentLocation) async {
+      double? lat = currentLocation.latitude;
+      double? lon = currentLocation.longitude;
+      if (lat == null || lon == null) {
+        return;
+      }
+
+      String newLocation = await reverseSearchLocation(lat, lon);
+      setState(() {
+        locationStr = newLocation;
+      });
+    });
+  }
+
+  Future<String> reverseSearchLocation(double lat, double lon) async {
+    http.Response res = await http.get(
+        Uri.parse(
+            "https://nominatim.openstreetmap.org/reverse?lat=$lat&lon=$lon&format=jsonv2&accept-language=th"),
+        headers: {'Accept-Language': 'th'});
+    dynamic json = jsonDecode(res.body);
+    print(json);
+    String output =
+        "${json['address']['road']}, ${json['address']['neighbourhood']}, ${json['address']['city']}";
+
+    return output;
   }
 
   @override
@@ -46,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: FittedBox(
               fit: BoxFit.cover,
               child: Image.network(
-                _userPhotoUrl ??
+                FirebaseAuth.instance.currentUser?.photoURL ??
                     'https://www.ilovejapantours.com/images/easyblog_articles/6/doraemon-gadget-cat-from-the-future-wallpaper-4.jpg',
               ),
             ),
@@ -61,9 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   .bodySmall!
                   .copyWith(color: primaryColor),
             ),
-            const Text(
-              "Asoke, Bangkok",
-              style: TextStyle(color: Colors.black),
+            Text(
+              locationStr,
+              style: const TextStyle(color: Colors.black),
             )
           ],
         ),
@@ -92,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const MediumCardList(),
               const SizedBox(height: 20),
               // Banner
-              // const PromotionBanner(), หน้าโปรโมชั่น
+              const PromotionBanner(),
               const SizedBox(height: 20),
               SectionTitle(
                 title: "Best Pick",
@@ -111,19 +156,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
               // Demo list of Big Cards
               Column(
-                children: demoMediumCardData.map((restaurant) {
+                children: demoRestaurantNames.map((name) {
+                  int index = demoRestaurantNames.indexOf(name);
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(
                         defaultPadding, 0, defaultPadding, defaultPadding),
                     child: RestaurantInfoBigCard(
                       // Use demoBigImages list
-                      images: [restaurant["image"]],
+                      images: demoBigImages,
                       // Use demoRestaurantNames list for name
-                      name: restaurant["name"],
-                      rating: restaurant["rating"],
+                      name: name,
+                      rating: 4.3,
                       numOfRating: 200,
-                      deliveryTime: restaurant["delivertTime"],
-                      foodType: const ["Fried Chicken"],
+                      deliveryTime: 25,
+                      foodType: const ["Chinese", "American", "Deshi food"],
                       press: () => Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -133,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 }).toList(),
-              ),
+              )
             ],
           ),
         ),
