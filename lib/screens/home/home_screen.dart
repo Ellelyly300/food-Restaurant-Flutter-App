@@ -91,9 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: defaultPadding),
               const MediumCardList(),
               const SizedBox(height: 20),
-              // Banner
-              // const PromotionBanner(), หน้าโปรโมชั่น
-              const SizedBox(height: 20),
               SectionTitle(
                 title: "Best Pick",
                 press: () => Navigator.push(
@@ -108,17 +105,13 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 20),
               SectionTitle(title: "All Restaurants", press: () {}),
               const SizedBox(height: 16),
-
-              // Demo list of Big Cards
               Column(
                 children: demoMediumCardData.map((restaurant) {
                   return Padding(
                     padding: const EdgeInsets.fromLTRB(
                         defaultPadding, 0, defaultPadding, defaultPadding),
                     child: RestaurantInfoBigCard(
-                      // Use demoBigImages list
                       images: [restaurant["image"]],
-                      // Use demoRestaurantNames list for name
                       name: restaurant["name"],
                       rating: restaurant["rating"],
                       numOfRating: 200,

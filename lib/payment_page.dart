@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:foodly_ui/delivery_progress_page.dart';
+import 'my_receipt.dart'; // Import my_receipt.dart
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class _PaymentPageState extends State<PaymentPage> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
+  List<Map<String, dynamic>> selectedItems = []; // สร้างตัวแปรเก็บรายการสินค้าที่เลือก
 
   void userTappedPay() {
     if (formKey.currentState!.validate()) {
@@ -46,7 +47,10 @@ class _PaymentPageState extends State<PaymentPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const DeliveryProgressPage(),
+                    builder: (context) => MyReceipt(
+                      orderedItems: selectedItems, // ส่งรายการสินค้าที่เลือกไปยัง MyReceipt
+                      totalPrice: calculateTotalPrice(), // ส่งราคารวมไปยัง MyReceipt
+                    ),
                   ),
                 );
               },
@@ -56,6 +60,15 @@ class _PaymentPageState extends State<PaymentPage> {
         ),
       );
     }
+  }
+
+  // คำนวณราคารวม
+  double calculateTotalPrice() {
+    double totalPrice = 0;
+    for (var item in selectedItems) {
+      totalPrice += item['price'];
+    }
+    return totalPrice;
   }
 
   @override
@@ -96,10 +109,10 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           const Spacer(),
 
-          // MyButton(
-          //   onTap: userTappedPay,
-          //   text: "Pay now",
-          // ),
+          ElevatedButton( // Replaced MyButton with ElevatedButton
+            onPressed: userTappedPay, // Call userTappedPay function when button is pressed
+            child: Text('Pay now'), // Button text
+          ),
         ],
       ),
     );

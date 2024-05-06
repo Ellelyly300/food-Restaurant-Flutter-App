@@ -26,13 +26,8 @@ List<String> demoBigImages = [
   "assets/images/ข้าวเหนียวไก่ทอด.png",
   "assets/images/ไก่ทอดคาราอาเกะ.jpg",
   "assets/images/ไก่ทอดบ้านๆ.jpg"
-<<<<<<< HEAD
-      "assets/images/ไก่ทอดซอสบาบีคิว.jpg"
-      "assets/images/ไก่ทอดซอสน้ำปลา.jpg"
-=======
   "assets/images/ไก่ทอดซอสบาบีคิว.jpg"
   "assets/images/ไก่ทอดซอสน้ำปลา.jpg"
->>>>>>> c5891869eb53c09d81c30aac72eb85c59a163c61
 ];
 
 List<Map<String, dynamic>> demoMediumCardData = [
@@ -66,11 +61,7 @@ List<Map<String, dynamic>> demoMediumCardData = [
   },
   {
     "name": "ไก่ทอดข้างทาง อุุดหนุนป้าหน่อยลูก",
-<<<<<<< HEAD
     "image": "assets/images/ปีกไก่ทอด.jpg",
-=======
-    "image": "assets/images/ปีกไก่ทอด.png",
->>>>>>> c5891869eb53c09d81c30aac72eb85c59a163c61
     "location": "มศว, กรุงเทพ",
     "rating": 9.5,
     "delivertTime": 15,
@@ -214,7 +205,6 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
       "foodType": "ไก่ทอดซอสน้ำผึ้งกระเทียม",
       "price": 0,
       "priceRange": "\฿ \฿",
-<<<<<<< HEAD
     },
     {
       "name": "ไก่ทอดบ้านๆ",
@@ -223,8 +213,6 @@ final Map<String, List<Map<String, dynamic>>> restaurantMenu = {
       "foodType": "ไก่ทอดซอสน้ำผึ้งกระเทียม",
       "price": 0,
       "priceRange": "\฿ \฿",
-=======
->>>>>>> c5891869eb53c09d81c30aac72eb85c59a163c61
     },
   ],
 };
