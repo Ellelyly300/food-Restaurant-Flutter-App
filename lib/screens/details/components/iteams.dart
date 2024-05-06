@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../components/cards/iteam_card.dart';
 import '../../../constants.dart';
 import '../../addToOrder/add_to_order_screen.dart';
@@ -68,7 +69,7 @@ final List<Map<String, dynamic>> demoData = [
     "description": "Description of Menu Item 1",
     "price": 9.99,
     "foodType": "Italian",
-    "priceRange": "\$" * 3,
+    "priceRange": "\฿" * 3,
   },
   {
     "image": "assets/images/featured_items_2.png",
@@ -76,7 +77,7 @@ final List<Map<String, dynamic>> demoData = [
     "description": "Description of Menu Item 2",
     "price": 7.99,
     "foodType": "Chinese",
-    "priceRange": "\$" * 2,
+    "priceRange": "\฿" * 2,
   },
   {
     "image": "assets/images/featured_items_3.png",
@@ -84,7 +85,7 @@ final List<Map<String, dynamic>> demoData = [
     "description": "Description of Menu Item 3",
     "price": 6.49,
     "foodType": "Mexican",
-    "priceRange": "\$",
+    "priceRange": "\฿",
   },
   // เพิ่มรายการเมนูเพิ่มเติมตามที่ต้องการ
 ];

@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'package:foodly_ui/demoData.dart';
-=======
 import 'package:flutter_svg/svg.dart';
->>>>>>> 30e2a83a6c283d2153717b16bd1e17cace1175a6
 
 import '../../constants.dart';
 import '../search/search_screen.dart';
