@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodly_ui/screens/home/home_screen.dart';
 
 class MyReceipt extends StatelessWidget {
   final List<Map<String, dynamic>> orderedItems; // รับรายการสินค้าที่เลือกมา
@@ -61,7 +62,10 @@ class MyReceipt extends StatelessWidget {
             const SizedBox(height: 25),
             ElevatedButton(
               onPressed: () {
-                Navigator.popUntil(context, ModalRoute.withName('/'));
+                if (!context.mounted) return;
+                Route route =
+                    MaterialPageRoute(builder: (context) => const HomeScreen());
+                Navigator.pushReplacement(context, route);
               },
               child: Text("Back to Home"),
             ),
